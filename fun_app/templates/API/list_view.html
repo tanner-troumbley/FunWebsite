@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+{% extends "basic_template.html" %}
+
+{% block content %}
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th hidden="True">ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>API URL</th>
+            <th>Expiration Date</th>
+            <th/>
+        </tr>
+        {% for i in list %}
+            <tr>
+                <td hidden="True">{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.username }}</td>
+                <td><input type="password" value={{ i.password }} id="api_password"></td>
+                <td>{{ i.api_url }}</td>
+                <td>{{ i.expiration }}</td>
+                <td>
+                    <form action="/del/{{ i.id }}" method="POST">
+                        <button hvalue="remove" type="submit" class="btn" style="float: right;"><span class="glyphicon glyphicon-trash"></span></button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
+
+<center class="row">
+    <h1><i>APIs</i></h1>
+    <hr/>
+</center>
+
+<div class="row">
+
+    <div class="col-md-8">
+        <div class="card">
+            <center><b>{{ i.title }}</b></center>
+            <hr/>
+            {{ i.date }}
+            <hr/>
+            {{ i.details }}
+            <br/>
+            <br/>
+            <form action="/del/{{ i.id }}" method="POST" style=" padding-right: 4%; padding-bottom: 3%;">
+                {% csrf_token %}
+                <button value="remove" type="submit" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-trash"></span> remove</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        <div class="submit_form">
+            <form method="POST">
+                {% csrf_token %}
+                {{ forms }}
+                <center>
+                    <input type="submit" class="btn btn-default" value="submit"/>
+                </center>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
