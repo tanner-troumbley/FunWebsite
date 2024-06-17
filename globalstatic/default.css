@@ -1,0 +1,36 @@
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #126fd9;
+}
+
+footer {
+    background-color: #126fd9;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+#body {
+    background-color: #ffffff;
+    font-family: verdana, sans-serif;
+
+}
+
+table, td, th {
+    border: 1px solid black;
+    text-align: center
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+

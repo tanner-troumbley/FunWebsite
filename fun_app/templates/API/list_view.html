@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-
-{% extends "basic_template.html" %}
-
+{% extends "default.html" %}
 {% block content %}
     {% csrf_token %}
     <table>
@@ -16,21 +13,32 @@
             <th>Expiration Date</th>
             <th/>
         </tr>
-        {% for i in list %}
-            <tr>
-                <td hidden="True">{{ i.id }}</td>
-                <td>{{ i.name }}</td>
-                <td>{{ i.username }}</td>
-                <td><input type="password" value={{ i.password }} id="api_password"></td>
-                <td>{{ i.api_url }}</td>
-                <td>{{ i.expiration }}</td>
-                <td>
-                    <form action="/del/{{ i.id }}" method="POST">
-                        <button hvalue="remove" type="submit" class="btn" style="float: right;"><span class="glyphicon glyphicon-trash"></span></button>
-                    </form>
-                </td>
-            </tr>
-        {% endfor %}
+        <tr>
+            <td style="text-align: left" colspan="5">
+                <a herf>Create</a>
+            </td>
+            <td hidden="True"/>
+            <td hidden="True"/>
+            <td hidden="True"/>
+        </tr>
+        <t t-if="list">
+            {% for i in list %}
+                <tr>
+                    <td hidden="True">{{ i.id }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.username }}</td>
+                    <td><input type="password" value={{ i.password }} id="api_password"></td>
+                    <td>{{ i.api_url }}</td>
+                    <td>{{ i.expiration }}</td>
+                    <td>
+                        <form action="/del/{{ i.id }}" method="POST">
+                            <button hvalue="remove" type="submit" class="btn" style="float: right;"><span
+                                    class="glyphicon glyphicon-trash"></span></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </t>
     </table>
 
 
@@ -54,7 +62,9 @@
             <br/>
             <form action="/del/{{ i.id }}" method="POST" style=" padding-right: 4%; padding-bottom: 3%;">
                 {% csrf_token %}
-                <button value="remove" type="submit" class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-trash"></span> remove</button>
+                <button value="remove" type="submit" class="btn btn-primary" style="float: right;"><span
+                        class="glyphicon glyphicon-trash"></span> remove
+                </button>
             </form>
         </div>
     </div>
